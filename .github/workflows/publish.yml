@@ -29,12 +29,11 @@ jobs:
 
       # Step 4: Build the project in Release configuration
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.fullsemver }}
 
-      # Step 5: Pack the NuGet package (output to ./nupkg folder)
       - name: Pack NuGet Package
-        run: dotnet pack --configuration Release --no-build --output ./nupkg
+        run: dotnet pack --configuration Release --no-build /p:PackageVersion=${{ steps.gitversion.outputs.nugetversion }} --output ./nupkg
 
-      # Step 6: Publish the package to NuGet using your API key
+      # Step 7: Publish the package to NuGet using your API key
       - name: Publish to NuGet
         run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
