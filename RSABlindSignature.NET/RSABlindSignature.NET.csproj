@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageReadmeFile>../README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>RSABlindSignature.NET</PackageId>
+    <Version>2.0.1</Version>
+    <Authors>Sourabh Rustagi</Authors>
+    <Company>Iamsourabh</Company>
+    <Description>The RSA Blind signature protocol is a two-party protocol between a client and server where they interact to compute sig=Sign(sk, input_msg), where input_msg = Prepare(msg) is a prepared version of the private message that is sent by the client and the sk, is the private signing key provided by the server.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/iamsourabh-in/RSABlindSignature.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
