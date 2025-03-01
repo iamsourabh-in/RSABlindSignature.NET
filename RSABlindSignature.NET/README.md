@@ -11,6 +11,21 @@ Finalize
 verification
 It also requires one round of interaction between the client and the server.
 
+## Usage
+
+```
+
+var (publicKey, privateKey) = RSABlinding.GenerateKeyPair(2048);
+
+var (message, blindingFactor) = RSABlinding.Blind("message", publicKey);
+
+var signedMessage = RSABlinding.Sign(message, privateKey);
+
+var signature = RSABlinding.Unblind(signedMessage, blindingFactor, publicKey);
+
+var result = RSABlinding.Verify("message", signature, publicKey);
+```
+
 ## Assumptions for the protocol:
 
 
