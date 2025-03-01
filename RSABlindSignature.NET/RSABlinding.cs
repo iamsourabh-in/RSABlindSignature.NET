@@ -93,7 +93,7 @@ namespace RSABlindSignature.NET
         /// <summary>
         /// Converts a string into a BigInteger.
         /// </summary>
-        private static BigInteger StringToBigInteger(string message)
+        public static BigInteger StringToBigInteger(string message)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(message);
             return new BigInteger(bytes);
@@ -101,7 +101,7 @@ namespace RSABlindSignature.NET
         /// <summary>
         /// Converts a big-endian byte array (from RSAParameters) into a positive BigInteger.
         /// </summary>
-        private static BigInteger BytesToBigInteger(byte[] bytes)
+        public static BigInteger BytesToBigInteger(byte[] bytes)
         {
             // Reverse the byte array (RSAParameters are big-endian; BigInteger expects little-endian)
             // and append a 0 byte to force a positive value.
