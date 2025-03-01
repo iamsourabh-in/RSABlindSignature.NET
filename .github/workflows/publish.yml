@@ -1,0 +1,38 @@
+name: Publish NuGet Package
+
+# Trigger the workflow when a tag starting with "v" is pushed
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Setup the required .NET SDK version
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+
+      # Step 3: Restore project dependencies
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      # Step 4: Build the project in Release configuration
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      # Step 5: Pack the NuGet package (output to ./nupkg folder)
+      - name: Pack NuGet Package
+        run: dotnet pack --configuration Release --no-build --output ./nupkg
+
+      # Step 6: Publish the package to NuGet using your API key
+      - name: Publish to NuGet
+        run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
