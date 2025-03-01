@@ -2,12 +2,9 @@ name: Publish NuGet Package
 
 # Trigger the workflow when a tag starting with "v" is pushed
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+    tags:
+      - 'v*'
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
